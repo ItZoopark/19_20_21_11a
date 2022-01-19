@@ -46,7 +46,30 @@ def two():
             print(s)
 
 
-two()
+def two_27765():
+    max_stones = 59
+    start_win = 69
+    a = [[0] * max_stones for i in range(max_stones)]
+    for s_row in range(max_stones):
+        for s_col in range(max_stones):
+            if s_row * 2 + s_col >= start_win or s_row + s_col * 3 >= start_win:
+                a[s_row][s_col] = 1
+
+    for k in range(500):
+        for i in range(30):
+            for j in range(20):
+                if a[i][j] == 0:
+                    if a[i + 1][j] > 0 and a[i][j + 1] > 0 and a[i * 2][j] > 0 and a[i][j * 3] > 0:
+                        a[i][j] = - max(a[i + 1][j], a[i][j + 1], a[i * 2][j], a[i][j * 3])
+                    elif a[i + 1][j] < 0 or a[i][j + 1] < 0 or a[i * 2][j] < 0 or a[i][j * 3] < 0:
+                        res = filter(lambda x: x < 0, [a[i + 1][j], a[i][j + 1], a[i * 2][j], a[i][j * 3]])
+                        a[i][j] = abs(max(res)) + 1
+    for s in range(max_stones):
+        if a[10][s] == -2:
+            print(s)
+
+
+two_27765()
 
 # a = [ [0] * 5 for i in range(5)]
 # print(a[1][2])
