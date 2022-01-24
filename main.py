@@ -141,4 +141,5 @@ def one_3074(turns):
             print(count)
 
 
+one()
 one_3074([-1, 2, -2])
